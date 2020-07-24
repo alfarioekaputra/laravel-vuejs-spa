@@ -1,0 +1,40 @@
+// Here you can add other styles
+
+/*
+.card-header > .c-icon:first-child {
+  margin-right: 0.1rem;
+  margin-top: 0.1rem;
+  vertical-align: top;
+  width: 1.2rem;
+  height: 1.2rem;
+  font-size: 1.2rem;
+}
+*/
+
+.card-header:not(.content-center) > .c-icon:first-child {
+  margin-right: 0.1rem;
+  margin-top: 0.1rem;
+  vertical-align: top;
+  width: 1.2rem;
+  height: 1.2rem;
+  font-size: 1.2rem;
+}
+
+.click-file{
+  cursor:pointer;
+}
+
+#cropp-img-img{
+  max-width:500px;
+  max-height:500px;
+}
+
+.breadcrumb {
+  display: flex;
+  flex-wrap: wrap;
+  padding: 0.75rem 1rem;
+  margin-bottom: 1rem;
+  list-style: none;
+  background-color: transparent !important;
+  border-radius: 0.25rem;
+}

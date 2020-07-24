@@ -1,0 +1,31 @@
+<?php
+
+namespace App\Http\Controllers;
+
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
+use App\User;
+
+class UserController extends Controller
+{
+    public function login(Request $request)
+    {
+        //VALIDASI DATA YANG DIKIRIMKAN
+        $this->validate($request, [
+            'email' => 'required|email|exists:users,email',
+            'password' => 'required',
+            'type' => 'required'
+        ]);
+
+        //CARI BERDASARKAN EMAIL
+        $user = User::where('email', $request->email)->first();
+
+        //LAKUKAN PENGECEKAN, JIKA PASSWORDNYA TIDAK SESUAI
+        if (!Hash::check($request->password, $user->password)) {
+            //MAKA BERIKAN RESPON FAILED
+            return response()->json(['status' => 'failed', 'data' => 'Password Anda Salah']);
+        }
+        //SELAIN ITU, BERIKAN RESPON SUKSES DAN GENERATE TOKEN LOGIN
+        return response()->json(['status' => 'success', 'data' => $user->createToken($request->type)->plainTextToken]);
+    }
+}
